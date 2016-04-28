@@ -1,0 +1,89 @@
+
+def show
+  response.headers["Content-Type"] = "text/event-stream"
+  3.times {
+   response.stream.write "Hello, browser!\n" 
+   sleep 1
+  }
+  response.stream.close
+end
+
+
+["Content-Type"] must be capitalized
+
+when running javascript on page load and using turbolinks, we have to listen for the page to load
+
+page:load
+
+$(document).on('page:load', initialize);
+
+--------------------------------------------
+
+
+$(document).on(page:load, initialize);
+
+$(document).on('page:load', initialize);
+
+-------------------------------------------
+
+function functionCallBruh(event){
+ if (event.target.checked){
+  alert("you can collect the bounty at the sheriffs office!");
+ }
+}
+
+$(document).on('click', '#id_clicked_bruh', functionCallBruh)
+
+================================================================
+
+LOADING EXAMPLE WITH TURBO LINKS
+- - - - - - - - - - - - - - - - - - - -
+
+PATH: app\assets\javascripts\loading.js
+- - - - - - - - - - - - - - - - -
+function hideLoading(){
+	$('#loading').hide();
+}
+
+function showLoading(){
+	$('#loading').show();
+}
+
+
+PATH: app\assests\javascripts\alerts.js
+- - - - - - - -- - - - - - - - - - - - -
+$(document).on('page:fetch', '#loading', showLoading);
+
+$(document).on('page:change', '#loading', hideLoading);
+
+
+Path: app\assets\views\application.html.erb
+- - - - - - - - - - - - - - - - - - - - - -
+<div id="loading"> Loading...please hold on a sec... </div>
+
+=================================================================
+
+SELECTIVE DISABLING WITH TURBO LINKS
+- - - - - - - - - - - - - - - - - - -
+<%= link_to 'request', request_path, "data-no-turbolink" => true %>
+
+
+also can do nesting with data-no-turbolink
+- - - - - - - - - - - - - - - - - - - - - -
+<div id="navigation" data-no-turbolink="true">
+ <%= link_to 'show', @requet %> 
+ <%= link_to 'back', request_path %>
+</div>
+ 
+===================================================================
+
+
+
+
+
+
+
+
+
+
+
