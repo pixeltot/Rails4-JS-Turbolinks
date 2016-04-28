@@ -1,17 +1,4 @@
-
-def show
-  response.headers["Content-Type"] = "text/event-stream"
-  3.times {
-   response.stream.write "Hello, browser!\n" 
-   sleep 1
-  }
-  response.stream.close
-end
-
-
-["Content-Type"] must be capitalized
-
-when running javascript on page load and using turbolinks, we have to listen for the page to load
+When running JS on page:load and using turbolinks, we have to listen for the page to load
 
 page:load
 
